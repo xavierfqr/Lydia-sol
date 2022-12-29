@@ -46,4 +46,20 @@ describe('Lydia', function () {
         latestBlock.timestamp + 1
       );
   });
+
+  it('should retrieve all transactions', async function () {
+    const { lydia, receiver } = await loadFixture(deployLydiaFixture);
+
+    await lydia.transfer(receiver.address, 'first transfer', { value: ethers.utils.parseEther('1') });
+    await lydia.transfer(receiver.address, 'second transfer', { value: ethers.utils.parseEther('2') });
+
+    const transactions = await lydia.getTransactions();
+    expect(transactions.length).to.equal(2);
+  });
+
+  it("shouldn't transfer if amount is 0", async function () {
+    const { lydia, receiver } = await loadFixture(deployLydiaFixture);
+
+    await expect(lydia.transfer(receiver.address, 'test', { value: 0 })).to.be.revertedWith('You must send some Ether');
+  });
 });
