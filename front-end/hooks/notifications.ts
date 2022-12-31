@@ -14,3 +14,18 @@ export function useErrorNotification() {
 
   return handleWarningNotification;
 }
+
+export function useSuccessNotification() {
+  const dispatch = useNotification();
+
+  const handleSuccessNotification = (message: string) => {
+    dispatch({
+      type: 'success',
+      message,
+      title: 'Success',
+      position: 'topR',
+    });
+  };
+
+  return handleSuccessNotification;
+}

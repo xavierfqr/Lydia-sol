@@ -1,27 +1,26 @@
 import { Blockie } from '@web3uikit/web3';
 import React from 'react';
 import { TransactionContext } from '../context/context';
+import { shortenAddress } from '../utils/contract';
 
 function Navbar() {
   const { account, connectWallet } = React.useContext<{ account: string; connectWallet: any }>(TransactionContext);
   console.log(account);
   return (
-    <nav className="bg-white border-b-4 border-blue-100 px-2 py-2.5 rounded flex justify-between">
-      <div className="text-2xl">LOGO</div>
-      {account ? (
-        <div className="flex justify-center">
-          <div className="m-1 mr-3">
-            Welcome{' '}
-            <span className="font-bold">
-              {account.substring(0, 3)}...{account.substring(account.length - 4, account.length)}
-            </span>{' '}
-            👋{' '}
+    <nav className="bg-black text-white border-b-4 border-blue-100 px-2 py-2.5 flex justify-between">
+      <div className="text-2xl italic ml-2">LYDIA.SOL</div>
+      <div className="mr-4">
+        {account ? (
+          <div className="flex justify-center">
+            <div className="m-1 mr-3">
+              Welcome <span className="font-bold">{shortenAddress(account)}</span> 👋{' '}
+            </div>
+            <Blockie seed={account} />
           </div>
-          <Blockie seed={account} />
-        </div>
-      ) : (
-        <button onClick={connectWallet}>Connect Wallet</button>
-      )}
+        ) : (
+          <button onClick={connectWallet}>Connect Wallet</button>
+        )}
+      </div>
     </nav>
   );
 }
