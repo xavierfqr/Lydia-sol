@@ -35,7 +35,7 @@ function TransactionForm() {
   return (
     <form
       onSubmit={handleSubmitForm}
-      className="p-3 border-4 text-white bg-gray-900 border-gray-700 w-96 h-80 mt-8 ml-8 border-opacity-50 rounded-lg h-full"
+      className="p-3 border-4 text-white bg-gray-900 border-gray-700 w-96 mt-8 ml-8 border-opacity-50 rounded-lg h-full"
     >
       <h3 className="font-medium pb-4 border-b-2 border-gray-400">Send Payment</h3>
       <div>

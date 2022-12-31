@@ -15,7 +15,7 @@ export const TransactionProvider = ({ children }: React.PropsWithChildren<{}>) =
 
   useEffect(() => {
     checkIfWalletIsConnected();
-  }, []);
+  }, [account]);
 
   const checkIfWalletIsConnected = async () => {
     try {
