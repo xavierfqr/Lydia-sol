@@ -7,7 +7,7 @@ function Navbar() {
   const { account, connectWallet } = React.useContext<{ account: string; connectWallet: any }>(TransactionContext);
   console.log(account);
   return (
-    <nav className="bg-black text-white border-b-4 border-blue-100 px-2 py-2.5 flex justify-between">
+    <nav className="bg-black text-white border-b-2 border-blue-100 px-2 py-2.5 flex justify-between flex-col sm:flex-row">
       <div className="text-2xl italic ml-2">LYDIA.SOL</div>
       <div className="mr-4">
         {account ? (
@@ -15,7 +15,7 @@ function Navbar() {
             <div className="m-1 mr-3">
               Welcome <span className="font-bold">{shortenAddress(account)}</span> 👋{' '}
             </div>
-            <Blockie seed={account} />
+            <Blockie seed={account} className="w-full" />
           </div>
         ) : (
           <button onClick={connectWallet}>Connect Wallet</button>

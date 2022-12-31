@@ -31,7 +31,6 @@ function Transactions() {
           timestamp,
           value,
         };
-        console.log([...tsxArray, tsx]);
         setTransactions([...tsxArray, tsx].reverse());
       });
     }
