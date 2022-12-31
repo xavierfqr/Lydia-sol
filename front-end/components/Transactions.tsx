@@ -23,9 +23,16 @@ function Transactions() {
       const tsxArray = await lydiaContract.getTransactions();
       setTransactions([...tsxArray].reverse());
 
-      lydiaContract.on('Transfer', async () => {
-        const tsxArray = await lydiaContract.getTransactions();
-        setTransactions([...tsxArray].reverse());
+      lydiaContract.on('Transfer', (from, to, value, message, timestamp) => {
+        const tsx: Transaction = {
+          message: message,
+          sender: from,
+          receiver: to,
+          timestamp,
+          value,
+        };
+        console.log([...tsxArray, tsx]);
+        setTransactions([...tsxArray, tsx].reverse());
       });
     }
     getTransactions();
@@ -47,10 +54,10 @@ function Transactions() {
                   <span>{shortenAddress(transaction.receiver)}</span>
                   <span className="text-xs font-light text-gray-400">
                     <span className="mx-4">●</span>
-                    {parseInt(transaction.value._hex) / 10 ** 18} ETH
+                    {parseInt(transaction.value._hex) / 10 ** 18}&nbsp;ETH
                   </span>
                 </div>
-                <div className="text-xs font-light text-gray-400 mb-4 flex">
+                <div className="text-xs font-light text-gray-400 mb-2 flex">
                   <span className="mr-[3px]">{moment(new Date(Number(transaction.timestamp) * 1000)).fromNow()}</span>
                   <GlobeAltIcon width="10px" />
                 </div>
