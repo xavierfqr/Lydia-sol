@@ -20,11 +20,12 @@ function Transactions() {
   useEffect(() => {
     async function getTransactions() {
       const lydiaContract = getLydiaContract();
-      setTransactions(await lydiaContract.getTransactions());
+      const tsxArray = await lydiaContract.getTransactions();
+      setTransactions([...tsxArray].reverse());
 
-      lydiaContract.on('Transfer', async (from, to, value, message, timestamp) => {
-        console.log(from, to, value, message, timestamp);
-        setTransactions(await lydiaContract.getTransactions());
+      lydiaContract.on('Transfer', async () => {
+        const tsxArray = await lydiaContract.getTransactions();
+        setTransactions([...tsxArray].reverse());
       });
     }
     getTransactions();
