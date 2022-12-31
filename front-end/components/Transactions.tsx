@@ -45,16 +45,16 @@ function Transactions() {
                   <span>{shortenAddress(transaction.sender)}</span>
                   <span className="mx-2">to</span>
                   <span>{shortenAddress(transaction.receiver)}</span>
+                  <span className="text-xs font-light text-gray-400">
+                    <span className="mx-4">●</span>
+                    {parseInt(transaction.value._hex) / 10 ** 18} ETH
+                  </span>
                 </div>
                 <div className="text-xs font-light text-gray-400 mb-4 flex">
                   <span className="mr-[3px]">{moment(new Date(Number(transaction.timestamp) * 1000)).fromNow()}</span>
                   <GlobeAltIcon width="10px" />
                 </div>
-
                 <div className="text-white">{transaction.message}</div>
-                <div className="text-xs font-light text-gray-400">
-                  {parseInt(transaction.value._hex) / 10 ** 18} ETH
-                </div>
               </div>
             </div>
           </div>
