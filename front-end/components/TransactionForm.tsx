@@ -46,7 +46,9 @@ function TransactionForm() {
         <div className="mt-4 p-2">
           <div className="flex mb-4">
             <InputGroup>
-              <InputLeftElement pointerEvents="none" children={<div>To</div>} />
+              <InputLeftElement pointerEvents="none">
+                <div>To</div>
+              </InputLeftElement>
               <Input
                 placeholder="0xA4BC09..."
                 name="to"
@@ -78,7 +80,9 @@ function TransactionForm() {
               style={{ outline: 'none', borderRadius: 0 }}
               onChange={handleInputChange}
             ></Input>
-            <InputRightAddon pointerEvents="none" children={<div>ETH</div>} background="transparent" />
+            <InputRightAddon pointerEvents="none" background="transparent">
+              <div>ETH</div>
+            </InputRightAddon>
           </InputGroup>
 
           <button className="hover:bg-gray-700 text-white bg-gray-800 p-2 rounded ml-4" type="submit">

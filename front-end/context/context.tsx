@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { useNotification } from '@web3uikit/core';
 import { useErrorNotification } from '../hooks/notifications';
@@ -10,14 +10,9 @@ export const TransactionContext = React.createContext<{ account: string; connect
 
 export const TransactionProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [account, setAccount] = React.useState('');
-
   const handleErrorNotification = useErrorNotification();
 
-  useEffect(() => {
-    checkIfWalletIsConnected();
-  }, [account]);
-
-  const checkIfWalletIsConnected = async () => {
+  const checkIfWalletIsConnected = useCallback(async () => {
     try {
       const { ethereum } = window;
 
@@ -35,7 +30,11 @@ export const TransactionProvider = ({ children }: React.PropsWithChildren<{}>) =
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [handleErrorNotification]);
+
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, [checkIfWalletIsConnected]);
 
   const connectWallet = async () => {
     try {
