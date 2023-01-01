@@ -1,3 +1,4 @@
+import { Button } from '@web3uikit/core';
 import { Blockie } from '@web3uikit/web3';
 import React from 'react';
 import { TransactionContext } from '../context/context';
@@ -18,7 +19,14 @@ function Navbar() {
             <Blockie seed={account} className="w-full" />
           </div>
         ) : (
-          <button onClick={connectWallet}>Connect Wallet</button>
+          <Button text="Connect Wallet" onClick={connectWallet} />
+          // <button
+          //   className="hover:bg-gray-700 text-white bg-gray-800 p-2 rounded ml-4"
+          //   type="submit"
+          //   disabled={!account}
+          // >
+          //   Send
+          // </button>
         )}
       </div>
     </nav>
