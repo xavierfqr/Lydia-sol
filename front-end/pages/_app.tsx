@@ -7,6 +7,7 @@ import { WagmiConfig, createClient, configureChains, goerli } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
+import { useEffect } from 'react';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [goerli],
@@ -21,6 +22,10 @@ const client = createClient({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    client.autoConnect();
+  }, []);
+
   return (
     <NotificationProvider>
       <ChakraProvider>
