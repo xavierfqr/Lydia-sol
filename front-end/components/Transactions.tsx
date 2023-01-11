@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getLydiaContract, shortenAddress } from '../utils/contract';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';

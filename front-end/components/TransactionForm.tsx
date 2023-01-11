@@ -1,8 +1,8 @@
 import { Input, InputGroup, InputLeftElement, Textarea, InputRightAddon } from '@chakra-ui/react';
 import { ethers } from 'ethers';
 import Image from 'next/image';
-import React, { useContext } from 'react';
-import { TransactionContext } from '../context/context';
+import React from 'react';
+import { useAccount } from 'wagmi';
 import { useErrorNotification, useSuccessNotification } from '../hooks/notifications';
 import { getLydiaContractWithSigner } from '../utils/contract';
 
@@ -12,7 +12,7 @@ function TransactionForm() {
     message: '',
     amount: '0',
   });
-  const { account } = useContext(TransactionContext);
+  const { isConnected: account } = useAccount();
 
   const errorNotification = useErrorNotification();
   const successNotification = useSuccessNotification();

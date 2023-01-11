@@ -1,4 +1,6 @@
-import Navbar from '../components/Navbar';
+import dynamic from 'next/dynamic';
+
+const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 import TransactionForm from '../components/TransactionForm';
 import Transactions from '../components/Transactions';
 

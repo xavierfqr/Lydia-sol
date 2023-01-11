@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import { ethers } from 'ethers';
-import { useNotification } from '@web3uikit/core';
 import { useErrorNotification } from '../hooks/notifications';
 
 export const TransactionContext = React.createContext<{ account: string; connectWallet: any }>({
